@@ -1,48 +1,246 @@
-# CyberSnaps – AI-Powered Security Comic Generator
+# Gen-Comic
+
+An AI-assisted web application that generates educational cybersecurity comics from user-provided security topics. The application uses OpenAI to create a four-panel comic script and renders the output as comic panels through a Flask-based web interface.
+
+---
 
 ## Overview
-**CyberSnaps** is an AI-based comic generator that transforms dry cybersecurity topics into engaging 4-panel comics using humor and storytelling.  
-Designed to simplify complex security concepts like phishing, DDoS, and malware, the platform offers an interactive way to educate users through visually appealing and relatable content.
 
-## Problem Statement
-Cybersecurity awareness is essential in today's digital landscape, yet most people overlook traditional security training because it tends to be text-heavy and unengaging.  
-This leads to recurring issues like phishing attacks, password leaks, and social engineering exploits.  
-There is a growing need for an educational tool that is not only informative but also fun and interactive.
+Gen-Comic aims to present cybersecurity concepts in a simple visual format. Users enter a security-related topic such as phishing, malware, ransomware, or firewall, and the application generates a short comic-style story explaining the concept.
 
-## Solution
-CyberSnaps addresses this problem by allowing users to input a cybersecurity topic and receive a comic strip that explains the concept in a humorous, easy-to-understand format.  
-The generated comics are ideal for awareness campaigns, employee training, and social media education.
+The generated comic is accompanied by a brief definition and a security awareness tip.
 
-## Key Features
-- Input a security term (e.g., phishing, malware, DDoS)
-- AI-generated 4-panel comic strip
-- Uses storytelling, humor, and characters
-- Simple UI for seamless interaction
-- Read Definition button using Web Speech API to read it aloud
-- Automatically fetches a random cybersecurity tip on every page load
-- Gets feedback from the user
+---
 
+## Features
+
+* Generate 4-panel cybersecurity comics from user input
+* AI-generated comic scripts using OpenAI API
+* Support for multiple cybersecurity topics
+* Automatically generated comic panel images
+* Topic definitions displayed alongside comics
+* Security awareness tips
+* Browser-based text-to-speech for definitions
+* Fallback comic generation when API requests fail
+* Responsive web interface
+
+---
+
+## Supported Topics
+
+Examples of supported topics include:
+
+* Phishing
+* Malware
+* Ransomware
+* Firewall
+* DDoS
+* Social Engineering
+* Zero-Day Attacks
+* IoT Security
+* Brute Force Attacks
+* Insider Threats
+* Supply Chain Attacks
+* Cloud Security
+* Deepfakes
+* Cryptojacking
+* Credential Stuffing
+* Man-in-the-Middle Attacks
+* SIM Swapping
+* Scareware
+* Botnets
+* Biometrics
+* Cryptography
+
+---
 
 ## Tech Stack
 
-| Layer       | Technology           |
-|-------------|----------------------|
-| Frontend    | HTML, CSS, JavaScript |
-| Backend     | Python (Flask)        |
-| AI (Text)   | OpenAI GPT-3.5-turbo  |
-| AI (Image)  | Hugging Face APIs     |
+### Backend
 
-## Implementation Details
-1. User inputs a topic on the user interface  
-2. The system generates a custom prompt for the AI model  
-3. GPT-3.5-turbo generates a 4-caption comic script  
-4. Hugging Face APIs generate visuals based on the script  
-5. Comic panels are rendered dynamically in a 4-panel layout  
-6. Final comic is displayed on screen with an option to share or download
-7. Reads Definition using Web Speech API 
- 
+* Python
+* Flask
 
-## Team Members
-- Oviyashree C J  
-- Roopa Varshni R  
-- Suchitra S  
+### Frontend
+
+* HTML
+* CSS
+* JavaScript
+
+### Libraries
+
+* OpenAI API
+* Pillow (PIL)
+* Requests
+* python-dotenv
+
+---
+
+## Project Structure
+
+```text
+Gen-Comic/
+│
+├── app.py
+├── requirements.txt
+├── .gitignore
+│
+├── static/
+│   ├── bg1.png
+│   └── styles.css
+│
+├── templates/
+│   └── index.html
+│
+└── README.md
+```
+
+---
+
+## Application Workflow
+
+1. User enters a cybersecurity topic.
+2. Flask receives the request.
+3. OpenAI generates a four-panel comic script.
+4. Panel descriptions are processed and converted into comic panels.
+5. A definition for the selected topic is retrieved.
+6. The generated comic, definition, and security tip are displayed to the user.
+
+---
+
+## API Endpoints
+
+### Home Page
+
+```http
+GET /
+```
+
+Renders the main user interface.
+
+---
+
+### Generate Comic
+
+```http
+POST /generate
+```
+
+#### Request Body
+
+```text
+term=phishing
+```
+
+#### Response
+
+```json
+{
+  "term": "phishing",
+  "script": "...",
+  "definition": "...",
+  "panels": [...]
+}
+```
+
+---
+
+### Security Tip
+
+```http
+GET /tip
+```
+
+#### Example Response
+
+```json
+{
+  "tip": "Use strong passwords and enable multi-factor authentication."
+}
+```
+
+---
+
+## Installation
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/Suchitra-Siddharthan/Gen-Comic.git
+cd Gen-Comic
+```
+
+### Create Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+### Activate Environment
+
+Windows
+
+```bash
+venv\Scripts\activate
+```
+
+Linux/macOS
+
+```bash
+source venv/bin/activate
+```
+
+### Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the project root.
+
+```env
+OPENAI_API_KEY=your_api_key
+```
+
+---
+
+## Running the Application
+
+```bash
+python app.py
+```
+
+Open the application in a browser:
+
+```text
+http://localhost:5000
+```
+
+(or the port configured in the application)
+
+---
+
+## Error Handling
+
+The application includes fallback comic scripts for supported topics when OpenAI API requests fail or timeout. This allows comic generation to continue even when external API access is unavailable.
+
+---
+
+## Learning Outcomes
+
+This project demonstrates:
+
+* REST-based web application development using Flask
+* Integration of third-party AI APIs
+* Prompt-based content generation
+* Dynamic image generation with Pillow
+* Frontend and backend integration
+* Error handling and fallback mechanisms
+* Educational content delivery through interactive interfaces
+
+```
+```
